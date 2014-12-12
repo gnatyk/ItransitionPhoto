@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron ">
+    <script src="~/Scripts/bootstrap.js"></script>
+   
+    <form action="~/Home/SaveDropzoneJsUploadedFiles" class="dropzone" id="dropzoneJsForm"></form>
+        <button class="btn btn-danger btn-lg" id="submit-all">Submit All Files</button>
+        <p></p>
+
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        Dropzone.options.dropzoneJsForm = {
+
+            //prevents Dropzone from uploading dropped files immediately
+            autoProcessQueue: false,
+
+            init: function () {
+                var submitButton = document.querySelector("#submit-all");
+                var myDropzone = this; //closure
+
+                submitButton.addEventListener("click", function () {
+
+                    //tell Dropzone to process all queued files
+                    myDropzone.processQueue();
+                });
+
+            }
+        };
+
+    </script>
+}
